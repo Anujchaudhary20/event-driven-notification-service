@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: worker-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/notifications}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+      timeout: 3000ms
+
+server:
+  port: ${SERVER_PORT:8080}
+
+notification:
+  stream-name: notifications:stream
+  consumer-group: delivery-workers
+  consumer-name: ${HOSTNAME:worker-1}
+  max-retries: ${NOTIFICATION_MAX_RETRIES:5}
+  retry-backoff-initial-ms: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

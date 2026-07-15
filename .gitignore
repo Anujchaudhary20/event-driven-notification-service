@@ -1,0 +1,23 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+!mvn
+
+# IDE files
+.idea/
+*.iml
+.eclipse/
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
