@@ -1,0 +1,21 @@
+# Java
+*.class
+*.log
+*.jar
+target/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ
+.idea/
+*.iml
+
+# OS
+.DS_Store
+
+# Environment files
+.env
+
+# Docker
+**/logs/
